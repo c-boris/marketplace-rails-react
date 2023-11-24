@@ -9,15 +9,18 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  config.jwt do |jwt|
-		jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
-	end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '511db675f6d229780f6aaae43772620f1e2e2b9394a29e79507efa7f5dcc4ea1148762eae518fbb9b4d97371ff30b3a0dfc8e8ed5ec8fb1adc6d9a2f122c99e9'
+  # config.secret_key = 'c9a759b38692eea192eb96d35165797b9367aa92eff5ff5cd195d7ace2bae846cb3b062bd0d2c3595c35eda226f9aab2ff160dd9fa8b6c23aeda0f644d47e1bf'
+  config.jwt do |jwt|
+    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
+    jwt.expiration_time = 24 * 3600 # 24 hours
+  end
+  
+  config.navigational_formats = [:json]
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -129,7 +132,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'e101687fd65ea4bd6a2521ec0dc0e9c95dc87d0bd9e3d089e21f51ba514c8ec1c72d9dc427ce29394d9a8e0d826b7e11f01f5d1eb9574bcfb6c89c402e918489'
+  # config.pepper = '8702ae30d5e8cc2d412df9d021e544e9871fc5d76fbf0072dcac0d61dbddc8d7300549fae97beb1d918a8ec202565a4702e684394e2e1882662574f0c2e7d268'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -302,7 +305,7 @@ Devise.setup do |config|
   # ==> Hotwire/Turbo configuration
   # When using Devise with Hotwire/Turbo, the http status for error responses
   # and some redirects must match the following. The default in Devise for existing
-  # apps is `200 OK` and `302 Found` respectively, but new apps are generated with
+  # apps is `200 OK` and `302 Found respectively`, but new apps are generated with
   # these new defaults that match Hotwire/Turbo behavior.
   # Note: These might become the new default in future versions of Devise.
   config.responder.error_status = :unprocessable_entity

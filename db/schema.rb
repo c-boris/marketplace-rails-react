@@ -15,10 +15,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_22_151254) do
   enable_extension "plpgsql"
 
   create_table "jwt_denylist", force: :cascade do |t|
-    t.string "jti"
-    t.datetime "exp"
+    t.string "jti", null: false
+    t.datetime "exp", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["jti"], name: "index_jwt_denylist_on_jti"
   end
 
   create_table "properties", force: :cascade do |t|

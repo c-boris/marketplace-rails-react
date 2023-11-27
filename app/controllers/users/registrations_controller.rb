@@ -1,13 +1,13 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
-  # def create
-  #   super do |resource|
-  #     if resource.persisted?
-  #       # Action pour envoyer un e-mail de bienvenue après la création de l'utilisateur
-  #       UserMailer.with(user: resource).welcome_email.deliver_later
-  #     end
-  #   end
-  # end
+  def create
+    super do |resource|
+      if resource.persisted?
+        # Action pour envoyer un e-mail de bienvenue après la création de l'utilisateur
+        UserMailer.with(user: resource).welcome_email.deliver_later
+      end
+    end
+  end
   private
 
   def respond_with(resource, _opts = {})

@@ -5,6 +5,9 @@ import { NavLink } from "react-router-dom";
 import LightToggle from "../LightToggle/";
 import DarkImage from "../../assets/img/Login-Icon.png";
 import LightImage from "../../assets/img/Login-Icon.jpg";
+import { useAtom } from "jotai";
+
+import { userAtom } from "../../utils/atom";
 
 const navigation = [
   { name: "Product", to: "/product" },
@@ -16,6 +19,7 @@ const navigation = [
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const savedTheme = localStorage.getItem("themePreference");
+  const [user] = useAtom(userAtom);
 
   return (
     <header className="bg-light dark:bg-dark fixed inset-x-0 top-0 z-50">
@@ -56,24 +60,30 @@ const Header = () => {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end space-x-6">
           <LightToggle />
-          <NavLink
-            to="/login"
-            className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary"
-          >
-            {savedTheme === "dark" ? (
-              <img
-                src={LightImage}
-                alt="Dark Image"
-                style={{ width: "50px", height: "50px" }}
-              />
-            ) : (
-              <img
-                src={LightImage}
-                alt="Dark Image"
-                style={{ width: "50px", height: "50px" }}
-              />
-            )}
-          </NavLink>
+          {user.isLoggedIn ? (
+            <div className="text-primary dark:text-dprimary">
+              "U are logged"
+            </div>
+          ) : (
+            <NavLink
+              to="/login"
+              className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary"
+            >
+              {savedTheme === "dark" ? (
+                <img
+                  src={LightImage}
+                  alt="Dark Image"
+                  style={{ width: "50px", height: "50px" }}
+                />
+              ) : (
+                <img
+                  src={LightImage}
+                  alt="Dark Image"
+                  style={{ width: "50px", height: "50px" }}
+                />
+              )}
+            </NavLink>
+          )}
         </div>
       </nav>
       <Dialog

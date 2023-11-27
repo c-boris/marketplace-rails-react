@@ -1,26 +1,26 @@
-import { useState } from 'react';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../utils/atom';
-import Cookies from 'js-cookie';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useAtom } from "jotai";
+import { userAtom } from "../../utils/atom";
+import Cookies from "js-cookie";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function SignupForm() {
   const [, setUser] = useAtom(userAtom);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password_confirmation, setPassword_Confirmation] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirmation, setPassword_Confirmation] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      const response = await fetch('http://localhost:3000/users', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/users", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           user: {
@@ -34,18 +34,19 @@ function SignupForm() {
       if (response.ok) {
         const data = await response.json();
 
-        Cookies.set('token', response.headers.get('Authorization'));
-        Cookies.set('id', data.user.id);
+        Cookies.set("token", response.headers.get("Authorization"));
+        Cookies.set("id", data.user.id);
+        Cookies.set("email", data.user.email);
 
         setUser({
           isLoggedIn: true,
         });
-        navigate('/'); // Redirect to the homepage
+        navigate("/"); // Redirect to the homepage
       } else {
-        setError('Error creating account');
+        setError("Error creating account");
       }
     } catch (error) {
-      setError('An error occurred during account creation');
+      setError("An error occurred during account creation");
     }
   };
 
@@ -61,7 +62,10 @@ function SignupForm() {
             {error && <p className="text-red-500">{error}</p>}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-primary dark:text-dprimary">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-primary dark:text-dprimary"
+              >
                 Email :
               </label>
               <div className="mt-2">
@@ -77,7 +81,10 @@ function SignupForm() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-primary dark:text-dprimary">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium leading-6 text-primary dark:text-dprimary"
+              >
                 Password :
               </label>
               <div className="mt-2">
@@ -93,7 +100,10 @@ function SignupForm() {
             </div>
 
             <div>
-              <label htmlFor="password_confirmation" className="block text-sm font-medium leading-6 text-primary dark:text-dprimary">
+              <label
+                htmlFor="password_confirmation"
+                className="block text-sm font-medium leading-6 text-primary dark:text-dprimary"
+              >
                 Password confirmation :
               </label>
               <div className="mt-2">
@@ -118,8 +128,11 @@ function SignupForm() {
             </div>
           </form>
           <p className="mt-10 text-center text-sm text-primary dark:text-dprimary">
-            Already a member?{' '}
-            <NavLink to="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            Already a member?{" "}
+            <NavLink
+              to="/login"
+              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+            >
               Log in
             </NavLink>
           </p>

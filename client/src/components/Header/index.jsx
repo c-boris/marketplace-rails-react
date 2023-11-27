@@ -62,7 +62,8 @@ const Header = () => {
           <LightToggle />
           {user.isLoggedIn ? (
             <div className="text-primary dark:text-dprimary">
-              "U are logged"
+              {user.email}
+              {console.log("user.email", user.email)}
             </div>
           ) : (
             <NavLink

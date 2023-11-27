@@ -48,6 +48,8 @@ function SignupForm() {
   };
 
   return (
+    <div className="flex h-screen min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-white">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
     <form onSubmit={handleSubmit}>
       <h2>Créer un compte</h2>
       {error && <p>{error}</p>}
@@ -83,6 +85,8 @@ function SignupForm() {
       </div>
       <button type="submit">Créer un compte et se connecter</button>
     </form>
+    </div>
+    </div>
   );
 }
 

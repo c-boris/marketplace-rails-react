@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../utils/atom';
 import Cookies from 'js-cookie';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function SignupForm() {
   const [, setUser] = useAtom(userAtom);
@@ -10,6 +10,7 @@ function SignupForm() {
   const [password, setPassword] = useState('');
   const [password_confirmation, setPassword_Confirmation] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,25 +26,26 @@ function SignupForm() {
           user: {
             email: email,
             password: password,
-            password_confirmation: password_confirmation
-          }
+            password_confirmation: password_confirmation,
+          },
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
 
-        Cookies.set('token', response.headers.get("Authorization"));
+        Cookies.set('token', response.headers.get('Authorization'));
         Cookies.set('id', data.user.id);
 
         setUser({
           isLoggedIn: true,
         });
+        navigate('/'); // Redirect to the homepage
       } else {
         setError('Error creating account');
       }
     } catch (error) {
-      setError('Erreur lors de la création du compte');
+      setError('An error occurred during account creation');
     }
   };
 

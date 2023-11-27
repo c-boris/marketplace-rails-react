@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../utils/atom';
 import Cookies from 'js-cookie';
+import { NavLink } from 'react-router-dom';
 
 
 function LoginForm() {
@@ -46,7 +47,8 @@ function LoginForm() {
   };
 
   return (
-    <div>
+    <div className="flex h-screen min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-white">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
       <form onSubmit={handleLogin}>
         <h2>Se connecter</h2>
         {error && <p>{error}</p>}
@@ -66,6 +68,10 @@ function LoginForm() {
         />
         <button type="submit">Se connecter</button>
       </form>
+      <NavLink to="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              Sign up
+            </NavLink>
+    </div>
     </div>
   );
 }

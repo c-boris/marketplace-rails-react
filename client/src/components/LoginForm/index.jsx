@@ -1,24 +1,24 @@
-import { useState } from 'react';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../utils/atom';
-import Cookies from 'js-cookie';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useAtom } from "jotai";
+import { userAtom } from "../../utils/atom";
+import Cookies from "js-cookie";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const [, setUser] = useAtom(userAtom);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/users/sign_in', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/users/sign_in", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           user: {
@@ -30,17 +30,17 @@ function LoginForm() {
 
       if (response.ok) {
         const data = await response.json();
-        Cookies.set('token', response.headers.get('Authorization'));
-        Cookies.set('id', data.user.id);
+        Cookies.set("token", response.headers.get("Authorization"));
+        Cookies.set("id", data.user.id);
         setUser({
           isLoggedIn: true,
         });
-        navigate('/');
+        navigate("/");
       } else {
-        setError('Invalid identifiers');
+        setError("Invalid identifiers");
       }
     } catch (error) {
-      setError('An error has occurred');
+      setError("An error has occurred");
     }
   };
 
@@ -54,12 +54,15 @@ function LoginForm() {
           <form onSubmit={handleLogin} className="space-y-6">
             {error && <p className="text-red-500">{error}</p>}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-primary dark:text-dprimary">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-primary dark:text-dprimary"
+              >
                 Email address
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
+                  id="loginEmail"
                   name="email"
                   type="email"
                   autoComplete="email"
@@ -72,18 +75,24 @@ function LoginForm() {
             </div>
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-primary dark:text-dprimary">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-primary dark:text-dprimary"
+                >
                   Password
                 </label>
                 <div className="text-sm">
-                  <NavLink to="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <NavLink
+                    to="#"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
                     Forgot password?
                   </NavLink>
                 </div>
               </div>
               <div className="mt-2">
                 <input
-                  id="password"
+                  id="loginPassword"
                   name="password"
                   type="password"
                   autoComplete="current-password"
@@ -104,8 +113,11 @@ function LoginForm() {
             </div>
           </form>
           <p className="mt-10 text-center text-sm text-primary dark:text-dprimary">
-            Not a member?{' '}
-            <NavLink to="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            Not a member?{" "}
+            <NavLink
+              to="/signup"
+              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+            >
               Sign up
             </NavLink>
           </p>

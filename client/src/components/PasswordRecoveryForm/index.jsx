@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function PasswordRecoveryForm() {
   const [email, setEmail] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   const handlePasswordRecovery = async (event) => {
     event.preventDefault();

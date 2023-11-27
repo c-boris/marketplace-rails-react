@@ -8,6 +8,7 @@ import Marketplace from "./pages/Marketplace";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import LostPassword from "./pages/LostPassword";
 import ErrorPage from "./pages/Error/";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <Signup/>
+      },
+      {
+        path: "lost-password",
+        element: <LostPassword/>
       },
     ]
   },

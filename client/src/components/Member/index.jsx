@@ -26,6 +26,7 @@ function Member() {
   }, []);
 
   return (
+    <center>
     <div>
       <h1>Mon application</h1>
       {user.isLoggedIn ? (
@@ -42,6 +43,7 @@ function Member() {
         </div>
       )}
     </div>
+    </center>
   );
 }
 

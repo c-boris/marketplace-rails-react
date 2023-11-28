@@ -8,6 +8,7 @@ import LightImage from "../../assets/img/Login-Icon.jpg";
 import { useAtom } from "jotai";
 
 import { userAtom } from "../../utils/atom";
+import ReadProperties from "../Properties/properties";
 
 const navigation = [
   { name: "Product", to: "/product" },
@@ -63,7 +64,7 @@ const Header = () => {
           {user.isLoggedIn ? (
             <div className="text-primary dark:text-dprimary">
               {user.email}
-              {console.log("user.email", user.email)}
+              <NavLink to="/readProperties">* Read Properties</NavLink>
             </div>
           ) : (
             <NavLink

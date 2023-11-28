@@ -8,8 +8,8 @@ import ReadProperties from "../../components/Properties/properties";
 export default function Home() {
   return (
     <div id="home">
-      <ReadProperties />
       <Hero />
+      <ReadProperties />
       <Team />
     </div>
   );

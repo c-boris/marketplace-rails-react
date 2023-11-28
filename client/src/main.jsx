@@ -16,7 +16,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { element } from "prop-types";
+import ReadProperties from "./components/Properties/properties.jsx";
 
 const router = createBrowserRouter([
   {
@@ -54,19 +55,20 @@ const router = createBrowserRouter([
       },
       {
         path: "lost-password",
-        element: <LostPassword/>
+        element: <LostPassword />,
       },
       {
         path: "dashboard",
-        element: <Dashboard/>
+        element: <Dashboard />,
       },
-    ]
+      { path: "Properties", element: <ReadProperties /> },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ToastContainer position="bottom-center" theme="dark"/>
+    <ToastContainer position="bottom-center" theme="dark" />
     <RouterProvider router={router} />
   </React.StrictMode>
 );

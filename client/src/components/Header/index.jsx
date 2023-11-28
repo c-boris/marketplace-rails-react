@@ -62,10 +62,12 @@ const Header = () => {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end space-x-6">
           <LightToggle />
           {user.isLoggedIn ? (
+
             <>
             <NavLink to="/dashboard" className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary">
             Dashboard
           </NavLink>
+
             <NavLink
               to="/"
               className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary"

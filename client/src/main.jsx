@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Layout from './Layout.jsx'
+import Layout from "./Layout.jsx";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Features from "./pages/Features";
@@ -13,42 +13,44 @@ import Dashboard from "./pages/Dashboard";
 import ErrorPage from "./pages/Error/";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout/>,
-    errorElement: <ErrorPage/>,
+    element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "",
-        element: <Home/>
+        element: <Home />,
       },
       {
         path: "product",
-        element: <Product/>
+        element: <Product />,
       },
       {
         path: "features",
-        element: <Features/>
+        element: <Features />,
       },
       {
         path: "marketplace",
-        element: <Marketplace/>
+        element: <Marketplace />,
       },
       {
         path: "contact",
-        element: <Contact/>
+        element: <Contact />,
       },
       {
         path: "login",
-        element: <Login/>
+        element: <Login />,
       },
       {
         path: "signup",
-        element: <Signup/>
+        element: <Signup />,
       },
       {
         path: "lost-password",

@@ -1,9 +1,11 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+User.create!(email: 'user1@gmail.com',password:'123456');
+User.create!(email: 'user3@gmail.com',password:'123456');
+User.create!(email: 'user2@gmail.com',password:'123456');
+
+
+Property.create!(title: "Maison de ville à ne pas manquer",price: 100000,description:"maison de plein pieds sur 3 étages avec ascenceur. Surface totale habitable de 325 m2 loi Carrez, certifiée par Stéphane Plazza, le roi de l'embrouille",user_id: 1)
+Property.create!(title: "La Maison du bonheur",price: 100000,description:"maison de plein pieds sur 3 étages avec ascenceur. Surface totale habitable de 325 m2 loi Carrez, certifiée par Stéphane Plazza, le roi de l'embrouille",user_id: 2)
+Property.create!(title: "Maison de ville à ne pas manquer",price: 100000,description:"maison de plein pieds sur 3 étages avec ascenceur. Surface totale habitable de 325 m2 loi Carrez, certifiée par Stéphane Plazza, le roi de l'embrouille. Salon de 80m2 avec cheminée et vue sur le clochet de l'église",user_id: 2)
+Property.create!(title: "Maison de ville à ne pas manquer",price: 100000,description:"maison de plein pieds sur 3 étages avec ascenceur. Surface totale habitable de 325 m2 loi Carrez, certifiée par Stéphane Plazza, le roi de l'embrouille",user_id: 3)
+Property.create!(title: "La Maison du bonheur",price: 100000,description:"maison de plein pieds sur 3 étages avec ascenceur. Surface totale habitable de 325 m2 loi Carrez, certifiée par Stéphane Plazza, le roi de l'embrouille",user_id: 3)
+Property.create!(title: "Maison de ville à ne pas manquer",price: 100000,description:"maison de plein pieds sur 3 étages avec ascenceur. Surface totale habitable de 325 m2 loi Carrez, certifiée par Stéphane Plazza, le roi de l'embrouille. Salon de 80m2 avec cheminée et vue sur le clochet de l'église",user_id: 3)

@@ -1,42 +1,37 @@
-import { useState } from 'react';
-import { Dialog } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
-import LightToggle from '../LightToggle/';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../utils/atom';
-import Cookies from 'js-cookie';
-import { toast } from 'react-toastify';
+import { useState } from "react";
+import { Dialog } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { NavLink } from "react-router-dom";
+import LightToggle from "../LightToggle/";
+import DarkImage from "../../assets/img/Login-Icon.png";
+import LightImage from "../../assets/img/Login-Icon.jpg";
+import { useAtom } from "jotai";
+
+import { userAtom } from "../../utils/atom";
 
 const navigation = [
-  { name: 'Product', to: '/product' },
-  { name: 'Features', to: '/features' },
-  { name: 'Marketplace', to: '/marketplace' },
-  { name: 'Contact', to: '/contact' },
+  { name: "Product", to: "/product" },
+  { name: "Features", to: "/features" },
+  { name: "Marketplace", to: "/marketplace" },
+  { name: "Contact", to: "/contact" },
 ];
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [user, setUser] = useAtom(userAtom);
-
-  const handleLogout = () => {
-    setUser({
-      id: '',
-      isLoggedIn: false,
-      token: '',
-    });
-
-    Cookies.remove('token');
-    Cookies.remove('id');
-
-    toast.success('Logout successful!');
-  };
+  const savedTheme = localStorage.getItem("themePreference");
+  const [user] = useAtom(userAtom);
 
   return (
     <header className="bg-light dark:bg-dark fixed inset-x-0 top-0 z-50">
-      <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav
+        className="flex items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
         <div className="flex lg:flex-1">
-          <NavLink to='/' className="-m-1.5 p-1.5 font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary">
+          <NavLink
+            to="/"
+            className="-m-1.5 p-1.5 font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary"
+          >
             <span className="sr-only">Your company</span>
             Your company
           </NavLink>
@@ -54,7 +49,11 @@ const Header = () => {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
-            <NavLink key={item.name} to={item.to} className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary">
+            <NavLink
+              key={item.name}
+              to={item.to}
+              className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary"
+            >
               {item.name}
             </NavLink>
           ))}
@@ -62,26 +61,47 @@ const Header = () => {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end space-x-6">
           <LightToggle />
           {user.isLoggedIn ? (
-            <NavLink
-              to="/"
-              className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary"
-              onClick={handleLogout}
-            >
-              Log out
-            </NavLink>
+            <div className="text-primary dark:text-dprimary">
+              {user.email}
+              {console.log("user.email", user.email)}
+            </div>
           ) : (
-            <NavLink to="/login" className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary">
-              Log in
+            <NavLink
+              to="/login"
+              className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary"
+            >
+              {savedTheme === "dark" ? (
+                <img
+                  src={DarkImage}
+                  alt="Dark Image"
+                  style={{ width: "50px", height: "50px" }}
+                />
+              ) : (
+                <img
+                  src={LightImage}
+                  alt="Light Image"
+                  style={{ width: "50px", height: "50px" }}
+                />
+              )}
             </NavLink>
           )}
         </div>
       </nav>
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)}>
+      <Dialog
+        as="div"
+        className="lg:hidden"
+        open={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+      >
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-light dark:bg-dark px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <NavLink to='/' className="-m-1.5 p-1.5 font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary" onClick={() => setMobileMenuOpen(false)}>
-              <span className="sr-only">Your company</span>
+            <NavLink
+              to="/"
+              className="-m-1.5 p-1.5 font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="sr-only">ImmoStock</span>
               Your company
             </NavLink>
             <button
@@ -108,26 +128,13 @@ const Header = () => {
                 ))}
               </div>
               <div className="py-6">
-                {user.isLoggedIn ? (
-                  <NavLink
-                    to="/"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary hover:bg-dsecondary dark:text-dprimary dark:hover:bg-secondary"
-                    onClick={() => {
-                      handleLogout();
-                      setMobileMenuOpen(false);
-                    }}
-                  >
-                    Log out
-                  </NavLink>
-                ) : (
-                  <NavLink
-                    to='/login'
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary hover:bg-dsecondary dark:text-dprimary dark:hover:bg-secondary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Log in
-                  </NavLink>
-                )}
+                <NavLink
+                  to="/login"
+                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary hover:bg-dsecondary dark:text-dprimary  dark:hover:bg-secondary"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Log in
+                </NavLink>
               </div>
             </div>
           </div>

@@ -62,6 +62,10 @@ const Header = () => {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end space-x-6">
           <LightToggle />
           {user.isLoggedIn ? (
+            <>
+            <NavLink to="/dashboard" className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary">
+            Dashboard
+          </NavLink>
             <NavLink
               to="/"
               className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary"
@@ -69,6 +73,7 @@ const Header = () => {
             >
               Log out
             </NavLink>
+            </>
           ) : (
             <NavLink to="/login" className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary">
               Log in
@@ -109,6 +114,16 @@ const Header = () => {
               </div>
               <div className="py-6">
                 {user.isLoggedIn ? (
+                  <>
+                  <NavLink
+                    to="/dashboard"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary hover:bg-dsecondary dark:text-dprimary dark:hover:bg-secondary"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    Dashboard
+                  </NavLink>
                   <NavLink
                     to="/"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary hover:bg-dsecondary dark:text-dprimary dark:hover:bg-secondary"
@@ -119,6 +134,7 @@ const Header = () => {
                   >
                     Log out
                   </NavLink>
+                  </>
                 ) : (
                   <NavLink
                     to='/login'

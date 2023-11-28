@@ -1,4 +1,8 @@
+import { useAtom } from "jotai";
+import { userAtom } from "../../utils/atom";
+
 export default function Hero() {
+  const [user] = useAtom(userAtom);
 
   return (
     <section id="hero" className="bg-light dark:bg-dark h-screen">
@@ -17,31 +21,65 @@ export default function Hero() {
         </div> */}
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-secondary dark:text-dsecondary ring-1 ring-primary/10 hover:ring-primary/20 dark:ring-dprimary/10 dark:hover:ring-dprimary/20">
-              Announcing our next round of funding.{' '}
-              <a href="#" className="font-semibold text-accent">
-                <span className="absolute inset-0" aria-hidden="true" />
-                Read more <span aria-hidden="true">&rarr;</span>
-              </a>
+            <div className="flex items-center justify-center h-full">
+              <div className="relative rounded-full px-3 py-1 text-2xl leading-9 text-secondary dark:text-dsecondary ring-1 ring-primary/10 hover:ring-primary/20 dark:ring-dprimary/10 dark:hover:ring-dprimary/20 text-center">
+                {user.isLoggedIn ? (
+                  `Hy ${user.email}`
+                ) : (
+                  <>
+                    Hy welcome to our marketplace, please login to get a full
+                    access to our app!
+                    <br />
+                    <a href="/signup" className="font-semibold text-accent">
+                      Click to sign up!
+                    </a>
+                  </>
+                )}
+              </div>
             </div>
           </div>
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-primary dark:text-dprimary sm:text-6xl">
-              Data to enrich your online business
+              Rent your properties easily with us!!!
             </h1>
             <p className="mt-6 text-lg leading-8 text-secondary dark:text-dsecondary">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, dolores! Minus, repellendus provident optio assumenda nihil, error porro qui consequatur consectetur dolor suscipit, aspernatur delectus eos reprehenderit quae. Debitis, eum?
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia,
+              dolores! Minus, repellendus provident optio assumenda nihil, error
+              porro qui consequatur consectetur dolor suscipit, aspernatur
+              delectus eos reprehenderit quae. Debitis, eum?
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Get started
-              </a>
-              <a href="#" className="text-sm font-semibold leading-6 text-primary dark:text-dprimary">
-                Learn more <span aria-hidden="true">→</span>
-              </a>
+              {user.isLoggedIn ? (
+                <>
+                  <a
+                    href="#"
+                    className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    View my listings
+                  </a>
+                  <a
+                    href="#"
+                    className="text-sm font-semibold leading-6 text-primary dark:text-dprimary"
+                  >
+                    View my profil <span aria-hidden="true">→</span>
+                  </a>
+                </>
+              ) : (
+                <>
+                  <a
+                    href="#"
+                    className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Show me properties
+                  </a>
+                  <a
+                    href="/login"
+                    className="text-sm font-semibold leading-6 text-primary dark:text-dprimary"
+                  >
+                    Create an account <span aria-hidden="true">→</span>
+                  </a>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -58,5 +96,5 @@ export default function Hero() {
         </div> */}
       </div>
     </section>
-  )
+  );
 }

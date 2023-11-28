@@ -6,9 +6,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable,
          jwt_revocation_strategy: JwtDenylist
-  # has_many :properties
+  #  validates :email, presence: true
+  has_many :properties
+
+  validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
+
+  # attr_accessor :login
+  # validates :admin, inclusion: { in: [true, false] }
+  
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
-  
+
 end

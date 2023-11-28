@@ -3,12 +3,12 @@ import { useAtom } from "jotai";
 import { userAtom } from "../../utils/atom";
 import Cookies from "js-cookie";
 import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function LoginForm() {
   const [, setUser] = useAtom(userAtom);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
@@ -36,11 +36,12 @@ function LoginForm() {
           isLoggedIn: true,
         });
         navigate("/");
+        toast.success("Login successful!");
       } else {
-        setError("Invalid identifiers");
+        toast.error('Invalid identifiers');
       }
     } catch (error) {
-      setError("An error has occurred");
+      toast.error('An error has occurred');
     }
   };
 
@@ -52,7 +53,6 @@ function LoginForm() {
             Sign in to your account
           </h2>
           <form onSubmit={handleLogin} className="space-y-6">
-            {error && <p className="text-red-500">{error}</p>}
             <div>
               <label
                 htmlFor="email"

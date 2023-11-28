@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function PasswordRecoveryForm() {
   const [email, setEmail] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   const handlePasswordRecovery = async (event) => {
     event.preventDefault();
@@ -24,14 +22,12 @@ function PasswordRecoveryForm() {
       });
 
       if (response.ok) {
-        // Successful password recovery
-        setSuccessMessage('Password recovery email sent successfully!');
+        toast.success('Password recovery email sent successfully!');
       } else {
-        // Failed password recovery
-        setError('An error occurred during password recovery');
+        toast.error('No accounts match. Please verify your email address.');
       }
     } catch (error) {
-      setError('An error occurred during password recovery');
+      toast.error('An error occurred during password recovery');
     }
   };
 
@@ -42,8 +38,6 @@ function PasswordRecoveryForm() {
           Forgot your password?
         </div>
         <form onSubmit={handlePasswordRecovery} className="space-y-6">
-          {error && <p className="text-red-500">{error}</p>}
-          {successMessage && <p className="text-green-500">{successMessage}</p>}
           <div>
             <label htmlFor="passwordRecoveryEmail" className="block text-sm font-medium leading-6 text-primary dark:text-dprimary">
               Enter your email address to reset your password

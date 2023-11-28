@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import LostPassword from "./pages/LostPassword";
+import Dashboard from "./pages/Dashboard";
 import ErrorPage from "./pages/Error/";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "lost-password",
         element: <LostPassword/>
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard/>
       },
     ]
   },

@@ -3,18 +3,17 @@ import { useAtom } from "jotai";
 import { userAtom } from "../../utils/atom";
 import Cookies from "js-cookie";
 import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function SignupForm() {
   const [, setUser] = useAtom(userAtom);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPassword_Confirmation] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError("");
 
     try {
       const response = await fetch("http://localhost:3000/users", {
@@ -41,12 +40,13 @@ function SignupForm() {
         setUser({
           isLoggedIn: true,
         });
-        navigate("/"); // Redirect to the homepage
+        navigate("/");
+        toast.success("Account created successfully!");
       } else {
-        setError("Error creating account");
+        toast.error('Error creating account');
       }
     } catch (error) {
-      setError("An error occurred during account creation");
+      toast.error('An error occurred during account creation');
     }
   };
 
@@ -57,10 +57,7 @@ function SignupForm() {
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-primary dark:text-dprimary">
             Create an account
           </h2>
-
           <form onSubmit={handleSubmit} className="space-y-6">
-            {error && <p className="text-red-500">{error}</p>}
-
             <div>
               <label
                 htmlFor="email"

@@ -40,6 +40,7 @@ export default function Hero() {
             </div>
           </div>
           <div className="text-center">
+
             <h1 className="text-4xl font-bold tracking-tight text-primary dark:text-dprimary sm:text-6xl py-20">
               Sell your properties easily with us!!!
             </h1>

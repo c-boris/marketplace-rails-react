@@ -53,12 +53,14 @@ function ReadProperties() {
               {data.map((item) => (
                 <li key={item.id}>
                   <div className="flex items-center gap-x-6">
-                    <h3 className="text-base font-semibold leading-7 tracking-tight text-primary dark:text-dprimary">
+                    <h2 className="text-base font-semibold leading-7 tracking-tight text-primary dark:text-dprimary">
                       {item.title}
-                    </h3>
-                    <p className="text-sm font-semibold leading-6 text-accent">
-                      {item.description}
-                    </p>
+                    </h2>
+                    <h2 className="text-sm font-semibold leading-6 text-accent">
+                      <p>Price: {item.price}</p>
+                      <p>{item.description}</p>
+                      <p>User #:{item.user_id}</p>
+                    </h2>
                   </div>
                 </li>
               ))}

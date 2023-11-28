@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { userAtom } from "../../utils/atom";
 import Cookies from "js-cookie";
 import { NavLink, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function SignupForm() {
   const [, setUser] = useAtom(userAtom);
@@ -36,17 +36,20 @@ function SignupForm() {
         Cookies.set("token", response.headers.get("Authorization"));
         Cookies.set("id", data.user.id);
         Cookies.set("email", data.user.email);
+        Cookies.set("username", data.user.username);
 
         setUser({
           isLoggedIn: true,
+          email: data.user.email,
+          username: data.user.username,
         });
         navigate("/");
         toast.success("Account created successfully!");
       } else {
-        toast.error('Error creating account');
+        toast.error("Error creating account");
       }
     } catch (error) {
-      toast.error('An error occurred during account creation');
+      toast.error("An error occurred during account creation");
     }
   };
 

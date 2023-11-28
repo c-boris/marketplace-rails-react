@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { userAtom } from "../../utils/atom";
 import Cookies from "js-cookie";
 import { NavLink, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function LoginForm() {
   const [, setUser] = useAtom(userAtom);
@@ -32,16 +32,21 @@ function LoginForm() {
         const data = await response.json();
         Cookies.set("token", response.headers.get("Authorization"));
         Cookies.set("id", data.user.id);
+        Cookies.set("email", data.user.email);
+        Cookies.set("username", data.user.username);
+
         setUser({
           isLoggedIn: true,
+          email: data.user.email,
+          username: data.user.username,
         });
         navigate("/");
         toast.success("Login successful!");
       } else {
-        toast.error('Invalid identifiers');
+        toast.error("Invalid identifiers");
       }
     } catch (error) {
-      toast.error('An error has occurred');
+      toast.error("An error has occurred");
     }
   };
 

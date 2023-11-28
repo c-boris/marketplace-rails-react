@@ -8,10 +8,15 @@ import Marketplace from "./pages/Marketplace";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import LostPassword from "./pages/LostPassword";
+import Dashboard from "./pages/Dashboard";
 import ErrorPage from "./pages/Error/";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ReadProperties from "./components/Properties/properties.jsx";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const router = createBrowserRouter([
   {
@@ -48,15 +53,20 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: "readProperties",
-        element: <ReadProperties />,
+        path: "lost-password",
+        element: <LostPassword/>
       },
-    ],
+      {
+        path: "dashboard",
+        element: <Dashboard/>
+      },
+    ]
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <ToastContainer position="bottom-center" theme="dark"/>
     <RouterProvider router={router} />
   </React.StrictMode>
 );

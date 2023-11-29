@@ -1,54 +1,17 @@
 import { useState } from "react";
-import { useAtom } from "jotai";
-import { userAtom } from "../../utils/atom";
-import Cookies from "js-cookie";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from '../../utils/useAuth';
 
 function LoginForm() {
-  const [, setUser] = useAtom(userAtom);
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (event) => {
+  const handleLogin = (event) => {
     event.preventDefault();
-
-    try {
-      const response = await fetch("http://localhost:3000/users/sign_in", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: {
-            email: email,
-            password: password,
-          },
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        Cookies.set("token", response.headers.get("Authorization"));
-        Cookies.set("id", data.user.id);
-        Cookies.set("email", data.user.email);
-        Cookies.set("username", data.user.username);
-
-        setUser({
-          isLoggedIn: true,
-          email: data.user.email,
-          username: data.user.username,
-          id: data.user.id,
-        });
-        navigate("/");
-        toast.success("Login successful!");
-      } else {
-        toast.error("Invalid identifiers");
-      }
-    } catch (error) {
-      toast.error("An error has occurred");
-    }
+    login(email, password, navigate, toast);
   };
 
   return (

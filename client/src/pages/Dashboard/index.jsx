@@ -5,15 +5,9 @@ const Dashboard = () => {
   return (
     <>
       <DashboardForm />
-      <PasswordUpdateForm/>
+      <PasswordUpdateForm />
       <NewProperty />
-
-const Dashboard = () => {
-  return (
-    <>
-      <DashboardForm/>
     </>
   );
 };
-
 export default Dashboard;

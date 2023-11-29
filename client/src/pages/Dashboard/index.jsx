@@ -1,11 +1,12 @@
-import DashboardForm from "../../components/DashboardForm/"
-
+import DashboardForm from "../../components/DashboardForm/";
+import NewProperty from "../../components/NewProperty/NewProperty";
 const Dashboard = () => {
   return (
     <>
-      <DashboardForm/>
+      <DashboardForm />
+      <NewProperty />
     </>
-  )
-}
+  );
+};
 
 export default Dashboard;

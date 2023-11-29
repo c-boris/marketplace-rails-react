@@ -4,6 +4,7 @@ const Profile = () => {
   return (
     <>
       <DashboardForm/>
+      {/* <ProfileForm/> */}
     </>
   )
 }

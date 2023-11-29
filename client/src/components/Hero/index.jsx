@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { userAtom } from "../../utils/atom";
-import { Link } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 export default function Hero() {
   const [user] = useAtom(userAtom);
@@ -37,41 +37,34 @@ export default function Hero() {
               Sell your properties easily with us!!!
             </h1>
             <p className="mt-6 text-lg leading-8 text-secondary dark:text-dsecondary">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia,
-              dolores! Minus, repellendus provident optio assumenda nihil, error
-              porro qui consequatur consectetur dolor suscipit, aspernatur
-              delectus eos reprehenderit quae. Debitis, eum?
+            Our expert team turns transactions into a seamless quest, easy as executing a flawless code !
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               {user.isLoggedIn ? (
                 <>
-                  <a
-                    href="#"
+                  <NavLink to="/my-listings" 
                     className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
-                    View my listings
-                  </a>
-                  <a
-                    href="#"
+                    My listings
+                    </NavLink>
+                    <NavLink to="/profile" 
                     className="text-sm font-semibold leading-6 text-primary dark:text-dprimary"
                   >
                     View my profil <span aria-hidden="true">→</span>
-                  </a>
+                    </NavLink>
                 </>
               ) : (
                 <>
-                  <Link
-                    to="/properties"
+                  <NavLink to="/listings" 
                     className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
-                    Show me properties
-                  </Link>
-                  <a
-                    href="/login"
+                    listings
+                    </NavLink>
+                    <NavLink to="/signup" 
                     className="text-sm font-semibold leading-6 text-primary dark:text-dprimary"
                   >
                     Create an account <span aria-hidden="true">→</span>
-                  </a>
+                  </NavLink>
                 </>
               )}
             </div>

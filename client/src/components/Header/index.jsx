@@ -10,10 +10,10 @@ import { useAtom } from 'jotai';
 
 
 const navigation = [
-  { name: 'Product', to: '/product' },
-  { name: 'Features', to: '/features' },
-  { name: 'Marketplace', to: '/marketplace' },
-  { name: 'Contact', to: '/contact' },
+  { name: 'Listings', to: '/listings' },
+  // { name: 'Features', to: '/features' },
+  // { name: 'Marketplace', to: '/marketplace' },
+  // { name: 'Contact', to: '/contact' },
 ];
 
 const Header = () => {
@@ -32,8 +32,8 @@ const Header = () => {
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <NavLink to='/' className="-m-1.5 p-1.5 font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary">
-            <span className="sr-only">Your company</span>
-            Your company
+            <span className="sr-only">ImmoStock</span>
+            ImmoStock
           </NavLink>
         </div>
         <div className="flex lg:hidden">
@@ -57,10 +57,12 @@ const Header = () => {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end space-x-6">
           <LightToggle />
           {user.isLoggedIn ? (
-
             <>
-            <NavLink to="/dashboard" className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary">
-            Dashboard
+            <NavLink to="/my-listings" className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary">
+            My Listings
+          </NavLink>
+          <NavLink to="/profile" className="text-sm font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary">
+            Profile
           </NavLink>
 
             <NavLink
@@ -83,8 +85,8 @@ const Header = () => {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-light dark:bg-dark px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <NavLink to='/' className="-m-1.5 p-1.5 font-semibold leading-6 text-primary dark:text-dprimary hover:text-secondary dark:hover:text-dsecondary" onClick={() => setMobileMenuOpen(false)}>
-              <span className="sr-only">Your company</span>
-              Your company
+              <span className="sr-only">ImmoStock</span>
+              ImmoStock
             </NavLink>
             <button
               type="button"
@@ -113,13 +115,22 @@ const Header = () => {
                 {user.isLoggedIn ? (
                   <>
                   <NavLink
-                    to="/dashboard"
+                    to="/my-listings"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary hover:bg-dsecondary dark:text-dprimary dark:hover:bg-secondary"
                     onClick={() => {
                       setMobileMenuOpen(false);
                     }}
                   >
-                    Dashboard
+                    My Listings
+                  </NavLink>
+                  <NavLink
+                    to="/profile"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary hover:bg-dsecondary dark:text-dprimary dark:hover:bg-secondary"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    Profile
                   </NavLink>
                   <NavLink
                     to="/"

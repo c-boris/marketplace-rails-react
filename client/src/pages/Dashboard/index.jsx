@@ -1,13 +1,13 @@
-import DashboardForm from "../../components/DashboardForm/"
-import PasswordUpdateForm from "../../components/PasswordUpdateForm/"
-
+import DashboardForm from "../../components/DashboardForm/";
+import NewProperty from "../../components/NewProperty/NewProperty";
+import PasswordUpdateForm from "../../components/PasswordUpdateForm/";
 const Dashboard = () => {
   return (
     <>
-      <DashboardForm/>
-      <PasswordUpdateForm/>
+      <DashboardForm />
+      <PasswordUpdateForm />
+      <NewProperty />
     </>
-  )
-}
-
+  );
+};
 export default Dashboard;

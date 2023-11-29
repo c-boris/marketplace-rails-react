@@ -16,6 +16,7 @@ const useAuth = () => {
         isLoggedIn: true,
         email: Cookies.get("email"),
         username: Cookies.get("username"),
+        id: Cookies.get("id"),
       });
     }
   }, [setUser]);

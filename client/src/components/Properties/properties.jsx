@@ -43,7 +43,7 @@ function ReadProperties() {
                 List of properties
               </h2>
               <p className="mt-6 text-lg leading-8 text-secondary dark:text-dsecondary">
-                Libero fames augue nisl porttitor nisi, quis.
+                All you are looking for is here below.
               </p>
             </div>
             <ul
@@ -56,9 +56,10 @@ function ReadProperties() {
                     <h2 className="text-base font-semibold leading-7 tracking-tight text-primary dark:text-dprimary">
                       {item.title}
                     </h2>
-                    <h2 className="text-sm font-semibold leading-6 text-accent">
+                    <h2 className="text-sm font-semibold leading-6 text-secondary dark:text-dsecondary">
                       <p>Price: {item.price}</p>
-                      <p>{item.description}</p>
+                      <p>City: {item.city}</p>
+                      <p>Description: {item.description}</p>
                       <p>User #:{item.user_id}</p>
                     </h2>
                   </div>

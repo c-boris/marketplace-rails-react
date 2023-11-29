@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export default function Hero() {
   const [user] = useAtom(userAtom);
 
+  console.log(user);
   return (
     <section id="hero" className="bg-light dark:bg-dark h-screen">
       <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -25,7 +26,11 @@ export default function Hero() {
             <div className="flex items-center justify-center h-full">
               <div className="relative rounded-full px-9 py-4 text-2xl leading-9 text-secondary dark:text-dsecondary ring-1 ring-primary/10 hover:ring-primary/20 dark:ring-dprimary/10 dark:hover:ring-dprimary/20 text-center">
                 {user.isLoggedIn ? (
-                  `Hy ${user.email}`
+                  user.username ? (
+                    `Hy ${user.username}`
+                  ) : (
+                    `Hy ${user.email}`
+                  )
                 ) : (
                   <>
                     Hy welcome to our marketplace, please login to get a full
@@ -40,7 +45,6 @@ export default function Hero() {
             </div>
           </div>
           <div className="text-center">
-
             <h1 className="text-4xl font-bold tracking-tight text-primary dark:text-dprimary sm:text-6xl py-20">
               Sell your properties easily with us!!!
             </h1>

@@ -50,6 +50,7 @@ const useAuth = () => {
           isLoggedIn: true,
           email: data.user.email,
           username: data.user.username,
+          id: data.user.id,
         });
 
         navigate("/");
@@ -62,7 +63,13 @@ const useAuth = () => {
     }
   };
 
-  const signup = async (email, password, password_confirmation, navigate, toast) => {
+  const signup = async (
+    email,
+    password,
+    password_confirmation,
+    navigate,
+    toast
+  ) => {
     try {
       const response = await fetch("http://localhost:3000/users", {
         method: "POST",

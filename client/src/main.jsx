@@ -16,7 +16,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { element } from "prop-types";
 import ReadProperties from "./components/Properties/properties.jsx";
 
 const router = createBrowserRouter([
@@ -61,7 +60,9 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <Dashboard />,
       },
-      { path: "Properties", element: <ReadProperties /> },
+      { path: "Properties",
+        element: <ReadProperties />,
+      },
     ],
   },
 ]);

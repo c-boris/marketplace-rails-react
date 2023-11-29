@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import React from 'react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import LightToggle from '../LightToggle/';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../utils/atom';
-import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
+import { useAuth } from '../../utils/useAuth'; // Import the useAuth hook
+import { userAtom } from '../../utils/atom';
+import { useAtom } from 'jotai';
+
 
 const navigation = [
   { name: 'Product', to: '/product' },
@@ -16,20 +17,14 @@ const navigation = [
 ];
 
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [user, setUser] = useAtom(userAtom);
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const navigate = useNavigate(); // Use navigate from react-router-dom
+  const { logout } = useAuth(); // Destructure the logout function from useAuth
+  const [user] = useAtom(userAtom);
 
   const handleLogout = () => {
-    setUser({
-      id: '',
-      isLoggedIn: false,
-      token: '',
-    });
-
-    Cookies.remove('token');
-    Cookies.remove('id');
-
-    toast.success('Logout successful!');
+    // Call the logout function from useAuth
+    logout(navigate, toast);
   };
 
   return (

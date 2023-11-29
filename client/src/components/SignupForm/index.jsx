@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useAtom } from "jotai";
-import { userAtom } from "../../utils/atom";
-import Cookies from "js-cookie";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "../../utils/useAuth"; // Import the useAuth hook
 
 function SignupForm() {
-  const [, setUser] = useAtom(userAtom);
+  const { signup } = useAuth(); // Destructure the signup function from useAuth
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPassword_Confirmation] = useState("");
@@ -15,42 +13,8 @@ function SignupForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: {
-            email: email,
-            password: password,
-            password_confirmation: password_confirmation,
-          },
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-
-        Cookies.set("token", response.headers.get("Authorization"));
-        Cookies.set("id", data.user.id);
-        Cookies.set("email", data.user.email);
-        Cookies.set("username", data.user.username);
-
-        setUser({
-          isLoggedIn: true,
-          email: data.user.email,
-          username: data.user.username,
-        });
-        navigate("/");
-        toast.success("Account created successfully!");
-      } else {
-        toast.error("Error creating account");
-      }
-    } catch (error) {
-      toast.error("An error occurred during account creation");
-    }
+    // Call the signup function from useAuth
+    signup(email, password, password_confirmation, navigate, toast);
   };
 
   return (

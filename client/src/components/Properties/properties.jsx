@@ -18,12 +18,13 @@ function ReadProperties() {
         if (response.ok) {
           const responseData = await response.json();
           setData(responseData);
-          console.log("DATA:", responseData);
         } else {
           setError("Identifiants invalides");
+          console.log(error.message);
         }
       } catch (error) {
         setError("Une erreur s'est produite");
+        console.log(error.message);
       }
     }
 

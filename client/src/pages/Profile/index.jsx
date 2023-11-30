@@ -1,10 +1,9 @@
-import DashboardForm from "../../components/DashboardForm/";
+import ProfileForm from "../../components/ProfileForm/";
 
 const Profile = () => {
   return (
     <>
-      <DashboardForm/>
-      {/* <ProfileForm/> */}
+      <ProfileForm/>
     </>
   )
 }

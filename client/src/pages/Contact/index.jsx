@@ -1,10 +1,10 @@
-import Newsletter from "../../components/Newsletter/"
+// import Newsletter from "../../components/Newsletter/"
 import ContactForm from "../../components/ContactForm/"
 
 const Contact = () => {
   return (
     <>
-      <Newsletter/>
+      {/* <Newsletter/> */}
       <ContactForm/>
     </>
   )

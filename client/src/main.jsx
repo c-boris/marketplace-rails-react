@@ -2,18 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Layout from "./Layout.jsx";
 import Home from "./pages/Home";
-import Product from "./pages/Product";
-import Features from "./pages/Features";
-import Marketplace from "./pages/Marketplace";
-import Contact from "./pages/Contact";
+import Listings from "./pages/Listings";
+import Profile from "./pages/Profile";
+// import Marketplace from "./pages/Marketplace";
+// import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import LostPassword from "./pages/LostPassword";
-import Dashboard from "./pages/Dashboard";
+import MyListings from "./pages/MyListings";
 import ErrorPage from "./pages/Error/";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { element } from "prop-types";
@@ -31,21 +30,17 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "product",
-        element: <Product />,
+        path: "listings",
+        element: <Listings />,
       },
-      {
-        path: "features",
-        element: <Features />,
-      },
-      {
-        path: "marketplace",
-        element: <Marketplace />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
-      },
+      // {
+      //   path: "marketplace",
+      //   element: <Marketplace />,
+      // },
+      // {
+      //   path: "contact",
+      //   element: <Contact />,
+      // },
       {
         path: "login",
         element: <Login />,
@@ -59,17 +54,14 @@ const router = createBrowserRouter([
         element: <LostPassword />,
       },
       {
-        path: "dashboard",
-        element: <Dashboard />,
+        path: "my-listings",
+        element: <MyListings />,
       },
       {
-        path: "properties",
-        element: <ReadProperties />,
+        path: "profile",
+        element: <Profile />,
       },
-      {
-        path: "properties/:id",
-        element: <ShowProperty />,
-      },
+      { path: "Properties", element: <ReadProperties /> },
     ],
   },
 ]);

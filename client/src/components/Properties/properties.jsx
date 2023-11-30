@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import { userAtom } from "../../utils/atom";
+import ShowProperty from "./showproperty.jsx";
+import { Link, NavLink } from "react-router-dom";
 
 function ReadProperties() {
   const [user] = useAtom(userAtom);
@@ -20,7 +22,7 @@ function ReadProperties() {
         if (response.ok) {
           const responseData = await response.json();
           setData(responseData);
-          console.log(responseData);
+          console.log("DATAAAAAAA:", responseData);
         } else {
           setError("Identifiants invalides");
         }
@@ -62,6 +64,13 @@ function ReadProperties() {
                       <p>Description: {item.description}</p>
                       <p>User #:{item.user_id}</p>
                     </h2>
+                    <Link
+                      to={`/properties/${item.id}`}
+                      state={{ item: item }}
+                      className="font-semibold text-accent"
+                    >
+                      Show Details
+                    </Link>
                   </div>
                 </li>
               ))}

@@ -33,7 +33,7 @@ function ShowProperty() {
                 View property
               </h2>
               <p className="mt-6 text-lg leading-8 text-secondary dark:text-dsecondary">
-                Libero fames augue nisl porttitor nisi, quis.
+                Details on a given property
               </p>
             </div>
             <ul
@@ -49,7 +49,6 @@ function ShowProperty() {
                     <p>Price: {item.price}</p>
                     <p>{item.description}</p>
                     <p>Contact :{userData.email}</p>{" "}
-                    {/* Utilisation de userData pour afficher l'email */}
                   </h2>
                 </div>
               </li>

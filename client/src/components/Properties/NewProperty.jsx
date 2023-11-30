@@ -54,7 +54,7 @@ function NewProperty() {
       <div className="flex h-screen min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-light dark:bg-dark">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-primary dark:text-dprimary">
-            Create a new property ID:{user.id} MAIL:{user.email}
+            Create a new property
           </h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -62,12 +62,13 @@ function NewProperty() {
                 htmlFor="title"
                 className="block text-sm font-medium leading-6 text-primary dark:text-dprimary"
               >
-                Title :
+                Title (*):
               </label>
               <div className="mt-2">
                 <input
                   type="text"
                   id="title"
+                  placeholder="5 caracters minimum"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
@@ -119,12 +120,13 @@ function NewProperty() {
                 htmlFor="Description"
                 className="block text-sm font-medium leading-6 text-primary dark:text-dprimary"
               >
-                Description :
+                Description (*):
               </label>
               <div className="mt-2">
                 <input
                   type="text"
                   id="description"
+                  placeholder="15 caracters minimum"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   required
@@ -136,7 +138,7 @@ function NewProperty() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex justify-center w-full rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Create
               </button>

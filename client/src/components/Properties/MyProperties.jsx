@@ -21,20 +21,20 @@ function MyProperties() {
 
         if (response.ok) {
           const responseData = await response.json();
-          setData(responseData);
-          setFilteredData(data.filter((item) => item.user_id == user.id));
-          console.log("DATAAAAAAA:", responseData);
-          console.log("filteredData:", filteredData);
+          setFilteredData(
+            responseData.filter((item) => item.user_id == user.id)
+          );
         } else {
           setError("Identifiants invalides");
+          console.log(error.message);
         }
       } catch (error) {
         setError("Une erreur s'est produite");
+        console.log(error.message);
       }
     }
-
     fetchData();
-  }, []);
+  }, [setData, setFilteredData]);
 
   return (
     <>
@@ -47,8 +47,11 @@ function MyProperties() {
                 MY properties
               </h2>
               <p className="mt-6 text-lg leading-8 text-secondary dark:text-dsecondary">
-                All properties belonging to {user.id}.
+                All properties belonging to user:{user.id}
               </p>
+              <Link to={`newProperty`} className="font-semibold text-accent">
+                Create new property
+              </Link>
             </div>
             <ul
               role="list"

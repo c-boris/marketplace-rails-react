@@ -17,6 +17,7 @@ import { element } from "prop-types";
 import ReadProperties from "./components/Properties/properties.jsx";
 import ShowProperty from "./components/Properties/showproperty.jsx";
 import MyProperties from "./components/Properties/MyProperties.jsx";
+import NewProperty from "./components/Properties/NewProperty.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       { path: "Properties/:id", element: <ShowProperty /> },
+      {
+        path: "my-listings/newProperty",
+        element: <NewProperty />,
+      },
     ],
   },
 ]);

@@ -129,7 +129,44 @@ const useAuth = () => {
     toast.success("Logout successful!");
   };
 
-  return { user, login, signup, logout };
+  const updateProfile = async (newProfileData) => {
+    try {
+      const response = await fetch("http://localhost:3000/users", {
+        method: "PATCH", // Utiliser la méthode PATCH pour la mise à jour des informations
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: Cookies.get("token"), // Assurez-vous d'inclure le jeton d'authentification
+        },
+        body: JSON.stringify({
+          user: newProfileData,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        // Mettre à jour les données de l'utilisateur dans l'état local
+        setUser({
+          isLoggedIn: true,
+          email: data.user.email,
+          username: data.user.username,
+          id: data.user.id,
+        });
+
+        // Mettre à jour les cookies si nécessaire
+        Cookies.set("email", data.user.email);
+        Cookies.set("username", data.user.username);
+
+        return data; // Vous pouvez retourner des données supplémentaires si nécessaire
+      } else {
+        throw new Error("Failed to update profile");
+      }
+    } catch (error) {
+      throw new Error("An error occurred during profile update");
+    }
+  };
+
+  return { user, login, signup, logout, updateProfile };
 };
 
 export { useAuth };

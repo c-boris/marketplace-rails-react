@@ -131,12 +131,19 @@ const useAuth = () => {
   };
 
   const updateProfile = async (newProfileData) => {
+    const token = Cookies.get("token");
+  
+    if (!token) {
+      // Handle the case where the token is not present (maybe redirect to login?)
+      throw new Error("Authentication token is missing");
+    }
+  
     try {
       const response = await fetch("http://localhost:3000/users", {
-        method: "PATCH", // Utiliser la méthode PATCH pour la mise à jour des informations
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: Cookies.get("token"), // Assurez-vous d'inclure le jeton d'authentification
+          Authorization: token,
         },
         body: JSON.stringify({
           user: newProfileData,

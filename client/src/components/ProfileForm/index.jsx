@@ -1,21 +1,28 @@
 import { useAuth } from "../../utils/useAuth";
 import { useState } from "react";
-import { useAtom } from "jotai";
-import { userAtom } from "../../utils/atom";
+import { useEffect } from 'react';
+// import { useAtom } from "jotai";
+// import { userAtom } from "../../utils/atom";
 import { toast } from "react-toastify";
 
 export default function ProfileForm() {
-  // Utilisez le hook useAuth
   const { user, updateProfile } = useAuth();
-  const [username, setUsername] = useState(user.username);
-  const [email, setEmail] = useState(user.email);
+  const [username, setUsername] = useState(user?.username || ''); // Utilisation de l'opérateur de nullish
+  const [email, setEmail] = useState(user?.email || '');
   const [error, setError] = useState(null);
+
+  // Utilisation de useEffect pour mettre à jour les valeurs initiales lorsque l'utilisateur change
+  useEffect(() => {
+    if (user) {
+      setUsername(user.username || '');
+      setEmail(user.email || '');
+    }
+  }, [user]);
 
   const handleUpdateProfile = async (event) => {
     event.preventDefault();
 
     try {
-      // Appelez la fonction updateProfile du hook useAuth
       await updateProfile({ username, email });
       toast.success("Profile updated successfully!");
     } catch (error) {
@@ -23,6 +30,11 @@ export default function ProfileForm() {
       setError("An error occurred while updating the profile");
     }
   };
+
+  if (!user) {
+    // Afficher un indicateur de chargement ou rediriger vers la page de connexion
+    return <p>Loading...</p>;
+  }
 
   return (
     <section id="dashboard" className="isolate bg-light dark:bg-dark px-6 py-24 sm:py-32 lg:px-8">
@@ -85,9 +97,9 @@ export default function ProfileForm() {
           </div>
 
           <div className="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" className="text-sm font-semibold leading-6 text-primary dark:text-dprimary">
+            {/* <button type="button" className="text-sm font-semibold leading-6 text-primary dark:text-dprimary">
               Cancel
-            </button>
+            </button> */}
             <button
               type="submit"
               className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

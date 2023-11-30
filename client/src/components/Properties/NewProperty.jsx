@@ -19,7 +19,7 @@ function NewProperty() {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/properties", {
+      const response = await fetch(`http://localhost:3000/properties`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

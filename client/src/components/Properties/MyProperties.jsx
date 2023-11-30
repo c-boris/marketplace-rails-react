@@ -12,7 +12,7 @@ function MyProperties() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:3000/properties", {
+        const response = await fetch(`http://localhost:3000/properties`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -69,20 +69,31 @@ function MyProperties() {
                       <p>Description: {item.description}</p>
                       <p>User #:{item.user_id}</p>
                     </h2>
-                    <Link
-                      to={`/properties/${item.id}`}
-                      state={{ item: item }}
-                      className="font-semibold text-accent"
-                    >
-                      Show Details
-                    </Link>
-                    <Link
-                      to={`/properties/update/${item.id}`}
-                      state={{ item: item }}
-                      className="font-semibold text-accent"
-                    >
-                      Modify
-                    </Link>
+                    <div className="flex-col">
+                      <Link
+                        to={`/properties/${item.id}`}
+                        state={{ item: item }}
+                        className="font-semibold text-accent"
+                      >
+                        Details
+                      </Link>
+                      <br></br>
+                      <Link
+                        to={`/properties/update/${item.id}`}
+                        state={{ item: item }}
+                        className="font-semibold text-accent"
+                      >
+                        Modify
+                      </Link>
+                      <br></br>
+                      <Link
+                        to={`/properties/delete/${item.id}`}
+                        state={{ item: item }}
+                        className="font-semibold text-accent"
+                      >
+                        Delete
+                      </Link>
+                    </div>
                   </div>
                 </li>
               ))}

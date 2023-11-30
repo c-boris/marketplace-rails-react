@@ -18,6 +18,7 @@ import ShowProperty from "./components/Properties/showproperty.jsx";
 import MyProperties from "./components/Properties/MyProperties.jsx";
 import NewProperty from "./components/Properties/NewProperty.jsx";
 import UpdateProperty from "./components/Properties/UpdateProperty.jsx";
+import DeleteProperty from "./components/Properties/DeleteProperty.jsx";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "/properties/update/:id",
         element: <UpdateProperty />,
+      },
+      {
+        path: "/properties/delete/:id",
+        element: <DeleteProperty />,
       },
       {
         path: "my-listings/newProperty",

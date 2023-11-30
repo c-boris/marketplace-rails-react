@@ -24,9 +24,8 @@ function UpdateProperty() {
     event.preventDefault();
 
     try {
-      console.log("item.id", item.id);
       const response = await fetch(
-        "http://localhost:3000/properties/${item.id}",
+        `http://localhost:3000/properties/${item.id}`,
         {
           method: "PATCH",
           headers: {

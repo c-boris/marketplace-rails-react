@@ -76,6 +76,13 @@ function MyProperties() {
                     >
                       Show Details
                     </Link>
+                    <Link
+                      to={`/properties/update/${item.id}`}
+                      state={{ item: item }}
+                      className="font-semibold text-accent"
+                    >
+                      Modify
+                    </Link>
                   </div>
                 </li>
               ))}

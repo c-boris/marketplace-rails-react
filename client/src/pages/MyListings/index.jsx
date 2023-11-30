@@ -1,4 +1,4 @@
-import NewProperty from "../../components/NewProperty/NewProperty";
+import NewProperty from "../../components/Properties/NewProperty";
 
 const MyListings = () => {
   return (

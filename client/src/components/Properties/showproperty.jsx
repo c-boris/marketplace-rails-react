@@ -1,6 +1,9 @@
 import { useLocation } from "react-router-dom";
+import { useAtom } from "jotai";
+import { userAtom } from "../../utils/atom";
 
 function ShowProperty() {
+  const [user] = useAtom(userAtom);
   const location = useLocation();
   const item = location.state.item;
   console.log(item);
@@ -30,7 +33,7 @@ function ShowProperty() {
                   <h2 className="text-sm font-semibold leading-6 text-accent">
                     <p>Price: {item.price}</p>
                     <p>{item.description}</p>
-                    <p>User #:{item.user_id}</p>
+                    <p>Contact :{user.email}</p>
                   </h2>
                 </div>
               </li>

@@ -100,6 +100,7 @@ const useAuth = () => {
           isLoggedIn: true,
           email: data.user.email,
           username: data.user.username,
+          id: data.user.id,
         });
 
         navigate("/");

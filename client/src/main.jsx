@@ -2,14 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Layout from "./Layout.jsx";
 import Home from "./pages/Home";
-import Listings from "./pages/Listings";
 import Profile from "./pages/Profile";
 // import Marketplace from "./pages/Marketplace";
 // import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import LostPassword from "./pages/LostPassword";
-import MyListings from "./pages/MyListings";
 import ErrorPage from "./pages/Error/";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -18,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { element } from "prop-types";
 import ReadProperties from "./components/Properties/properties.jsx";
 import ShowProperty from "./components/Properties/showproperty.jsx";
+import MyProperties from "./components/Properties/MyProperties.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "listings",
-        element: <Listings />,
+        element: <ReadProperties />,
       },
       // {
       //   path: "marketplace",
@@ -55,7 +54,7 @@ const router = createBrowserRouter([
       },
       {
         path: "my-listings",
-        element: <MyListings />,
+        element: <MyProperties />,
       },
       {
         path: "profile",

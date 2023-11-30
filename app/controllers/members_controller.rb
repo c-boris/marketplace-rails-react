@@ -1,7 +1,8 @@
 # app/controllers/members_controller.rb
 
 class MembersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:get_all_users]
+  
 
   def show
     user = get_user_from_token
@@ -11,6 +12,10 @@ class MembersController < ApplicationController
     }
   end
 
+  def get_all_users
+  @users = User.all # User.all pour récupérer tous les utilisateurs enregistrés
+  render json: @users # Vous pouvez choisir de renvoyer les utilisateurs au format JSON ou HTML, selon vos besoins
+end
   private
 
   def get_user_from_token

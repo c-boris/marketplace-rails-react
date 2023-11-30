@@ -1,16 +1,31 @@
 import { useLocation } from "react-router-dom";
-import { useAtom } from "jotai";
-import { userAtom } from "../../utils/atom";
+import { useState, useEffect } from "react";
+import { fetchAllUsers } from "../../utils/allUserAtom";
 
 function ShowProperty() {
-  const [user] = useAtom(userAtom);
   const location = useLocation();
   const item = location.state.item;
-  console.log(item);
+  const [userData, setUserData] = useState(null);
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const users = await fetchAllUsers();
+        // Recherche de l'utilisateur correspondant à l'`user_id` de la propriété
+        const user = users.find((user) => user.id === item.user_id);
+        setUserData(user);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    }
+
+    if (item) {
+      fetchData();
+    }
+  }, [item]);
   return (
     <>
-      {item && (
+      {item && userData && (
         <div className="bg-light dark:bg-dark py-24 sm:py-32 h-screen">
           <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
             <div className="max-w-2xl">
@@ -33,7 +48,8 @@ function ShowProperty() {
                   <h2 className="text-sm font-semibold leading-6 text-accent">
                     <p>Price: {item.price}</p>
                     <p>{item.description}</p>
-                    <p>Contact :{user.email}</p>
+                    <p>Contact :{userData.email}</p>{" "}
+                    {/* Utilisation de userData pour afficher l'email */}
                   </h2>
                 </div>
               </li>

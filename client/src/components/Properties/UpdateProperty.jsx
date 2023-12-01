@@ -46,10 +46,8 @@ function UpdateProperty() {
 
       if (response.ok) {
         const data = await response.json();
-
+        navigate("/my-listings");
         Cookies.set("token", response.headers.get("Authorization"));
-
-        navigate("/");
         toast.success("Property modified successfully!");
       } else {
         toast.error("Error modifying property");

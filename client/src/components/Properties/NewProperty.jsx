@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PropertyForm from "./PropertyForm";
+import MyProperties from "./MyProperties";
 
 function NewProperty() {
   const [user, setUser] = useAtom(userAtom);
@@ -37,10 +38,8 @@ function NewProperty() {
 
       if (response.ok) {
         const data = await response.json();
-
         Cookies.set("token", response.headers.get("Authorization"));
-
-        navigate("/");
+        navigate("/my-listings");
         toast.success("Property created successfully!");
       } else {
         toast.error("Error creating property");
@@ -65,6 +64,7 @@ function NewProperty() {
         handleSubmit={handleSubmit}
         action={"Create"}
       />
+      <MyProperties />
     </>
   );
 }

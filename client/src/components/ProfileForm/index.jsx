@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 
 export default function ProfileForm() {
   const { user, updateProfile } = useAuth();
-  const [username, setUsername] = useState(user?.username || '');
   const [email, setEmail] = useState(user?.email || '');
   const [emailConfirmation, setEmailConfirmation] = useState('');
   const [error, setError] = useState(null);
@@ -15,7 +14,6 @@ export default function ProfileForm() {
   // Utilisation de useEffect pour mettre à jour les valeurs initiales lorsque l'utilisateur change
   useEffect(() => {
     if (user) {
-      setUsername(user.username || '');
       setEmail(user.email || '');
     }
   }, [user]);
@@ -25,7 +23,6 @@ export default function ProfileForm() {
 
     try {
       await updateProfile({
-        username,
         email,
         email_confirmation: emailConfirmation, // Separate state for confirmation
         password,
@@ -54,7 +51,7 @@ export default function ProfileForm() {
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-4">
                   <label htmlFor="email" className="block text-sm font-medium leading-6 text-primary dark:text-dprimary">
-                    Email address
+                    Edit Email address
                   </label>
                   <div className="mt-2">
                     <input
@@ -90,7 +87,7 @@ export default function ProfileForm() {
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-4">
                   <label htmlFor="password" className="block text-sm font-medium leading-6 text-primary dark:text-dprimary">
-                    Password
+                    Edit Password
                   </label>
                   <div className="mt-2">
                     <input

@@ -7,15 +7,17 @@ Rails.application.routes.draw do
                registrations: 'users/registrations',
                passwords: 'users/passwords'
              }
+  
   # resources :properties
   get '/member-data', to: 'members#show'
   get '/users', to: 'members#get_all_users', as: 'users'  
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-resources :properties
-devise_scope :user do
-  put '/users/update_profile', to: 'users/registrations#update_profile', as: :update_profile
-end
+  resources :properties
+  
+  devise_scope :user do
+    patch '/users/update_profile', to: 'users/registrations#update_profile', as: :update_profile
+  end
+  
   # Defines the root path route ("/")
   # root "articles#index"
 end

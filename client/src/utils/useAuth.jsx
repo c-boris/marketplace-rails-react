@@ -134,38 +134,52 @@ const useAuth = () => {
     const token = Cookies.get("token");
   
     if (!token) {
-      // Handle the case where the token is not present (maybe redirect to login?)
       throw new Error("Authentication token is missing");
     }
   
     try {
-      const response = await fetch("http://localhost:3000/users", {
+      // Destructure with default values to handle undefined properties
+      const {
+        currentPassword = "",
+        email = "",
+        emailConfirmation = "", // Handle emailConfirmation explicitly
+        password = "",
+        passwordConfirmation = "",
+      } = newProfileData;
+  
+      const response = await fetch("http://localhost:3000/users/update_profile", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: token,
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
-          user: newProfileData,
+          user: {
+            email,
+            email_confirmation: emailConfirmation, // Separate state for confirmation
+             password,
+            password_confirmation: passwordConfirmation,
+            current_password: currentPassword
+          },
         }),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
-
-        // Mettre à jour les données de l'utilisateur dans l'état local
+  
+        // Update user data in the local state
         setUser({
           isLoggedIn: true,
           email: data.user.email,
           username: data.user.username,
           id: data.user.id,
         });
-
-        // Mettre à jour les cookies si nécessaire
+  
+        // Update cookies if necessary
         Cookies.set("email", data.user.email);
         Cookies.set("username", data.user.username);
-
-        return data; // Vous pouvez retourner des données supplémentaires si nécessaire
+  
+        return data; // You can return additional data if needed
       } else {
         throw new Error("Failed to update profile");
       }
@@ -173,6 +187,8 @@ const useAuth = () => {
       throw new Error("An error occurred during profile update");
     }
   };
+  
+  
 
   return { user, login, signup, logout, updateProfile };
 };
